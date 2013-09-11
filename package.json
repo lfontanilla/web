@@ -6,10 +6,11 @@
     "express": "*",
     "jade": "*",
     "stylus": "*",
-    "nib": "*",    
-    "nodemon": "*"
+    "nib": "*",
+    "nodemon": "*",
+    "request": "*"
   },
-    "scripts": {
+  "scripts": {
     "start": "nodemon app.js"
   }
 }

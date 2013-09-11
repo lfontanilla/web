@@ -12,6 +12,7 @@ $(function() {
 
   var viewModel = function() {
     var self = this;
+    
     self.AmazonSearchResults = ko.observableArray([]);
   };
 
