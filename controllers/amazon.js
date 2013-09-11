@@ -8,6 +8,6 @@ exports.search = function(req, res) {
     var data = {};
     if (!error && response.statusCode == 200)
       data = body;
-    res.render('amazonsearch', {title: 'Amazon Search', data:data});
+    res.render('amazonsearch', {title: 'Amazon Search', data: data});
   });
 };

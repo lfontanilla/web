@@ -12,6 +12,9 @@ $(function() {
 
   var viewModel = function() {
     var self = this;
+    console.log("searchresults");
+    var stuff = searchresults.replace(/&quot;/g,'"');
+    console.log(stuff);
     
     self.AmazonSearchResults = ko.observableArray([]);
   };
