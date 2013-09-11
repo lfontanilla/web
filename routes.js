@@ -6,14 +6,13 @@ app = module.parent.exports.app;
 
 /* require your controllers here */
 var siteController = require('./controllers/site');
-var adminController = require('./controllers/admin');
+var amazonController = require('./controllers/amazon');
 
 /* Put routes here */
 
 // main site routes
 app.get('/', siteController.index);
-app.get('/detail', siteController.detail);
 
-// admin routes
-app.get('/admin', adminController.admin);
+// amazon routes
+app.get('/amazonsearch/:searchterms', amazonController.search);
 

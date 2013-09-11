@@ -1,19 +1,33 @@
-var express = require('express');
+var express = require('express')
+        , stylus = require('stylus')
+        , nib = require('nib');
 var common = require('./config/config');
 var config = common.config();
 var app = module.exports = express();
 
+function compile(str, path) {
+  return stylus(str)
+          .set('filename', path)
+          .use(nib());
+}
+
 // Configuration, defaults to jade as the view engine
-app.configure(function(){
+app.configure(function() {
   app.set('views', __dirname + '/views');
   app.set('view engine', 'jade');
   app.use(express.bodyParser());
+  app.use(express.logger('dev'));
   app.use(express.methodOverride());
   app.use(app.router);
+  app.use(stylus.middleware(
+          {src: __dirname + '/public'
+                    , compile: compile
+          }
+  ));
   app.use(express.static(__dirname + '/public'));
 });
 
-app.listen(config.port, config.host, function(){
+app.listen(config.port, config.host, function() {
   console.log("Express server listening on port %d in %s mode", config.port, app.settings.env);
 });
 
