@@ -1,0 +1,15 @@
+{
+  "name": "web",
+  "version": "0.0.1",
+  "private": "true",
+  "dependencies": {
+    "express": "*",
+    "jade": "*",
+    "stylus": "*",
+    "nib": "*",    
+    "nodemon": "*"
+  },
+    "scripts": {
+    "start": "nodemon app.js"
+  }
+}
