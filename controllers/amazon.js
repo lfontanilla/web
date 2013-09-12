@@ -4,7 +4,7 @@ var common = require('../config/config');
 var config = common.config();
 
 exports.search = function(req, res) {
-  var searchterms = req.params.searchterms;
+  var searchterms = req.params.searchterms;  
   request(config.apiurl + '/amazonsearch/' + searchterms, function(error, response, body) {
     var data = {};
     if (!error && response.statusCode == 200)

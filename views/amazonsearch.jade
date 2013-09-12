@@ -1,15 +1,20 @@
 extend layout
 block content
   script
-    var searchresults="#{JSON.stringify(data)}";
-    var searchterms="#{searchterms}";
-    
+    var searchresults = "#{JSON.stringify(data)}";
+    var searchterms = "#{searchterms}";    
   script(type="text/javascript", src="/javascript/amazonsearch.js")
   .container
     .row-fluid
-      input.col-xs-12.form-control(type='text', placeholder='search in amazon', autofocus="" data-bind="value: searchterms, valueUpdate:'afterkeydown'")
-    p
+      .col-xs-10
+        input.form-control(type='text', placeholder='search in amazon', autofocus="" data-bind="value: searchterms, valueUpdate:'afterkeydown', event:{keypress: $root.checkForEnter}")
+      .col-xs-2
+        button.btn.btn-primary(data-bind="click: AmazonSearch, enable: searchterms") Search
+    br
+    br
+    .row-fluid
       h4 Amazon search results
+    br
     .row
       .col-xs-2 ASIN
       .col-xs-2 Lowest New Price
