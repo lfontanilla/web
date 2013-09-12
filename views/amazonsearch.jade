@@ -3,7 +3,25 @@ block content
   script
     var searchresults="#{JSON.stringify(data)}";
   script(type="text/javascript", src="/javascript/amazonsearch.js")
-  p
-    | amazon stuff '#{ data }'
-    
+  .container
+    p
+      h4 Amazon search results
+    .row
+      .col-xs-2 ASIN
+      .col-xs-2 Lowest New Price
+      .col-xs-2 Lowest Used Price
+      .col-xs-2 Lowest Refurbished Price
+      .col-xs-2 Currency
+      .col-xs-2 Picture
+    div(data-bind="foreach: AmazonSearchResults")
+      .row
+        .col-xs-2(data-bind="text: ASIN")
+        .col-xs-2(data-bind="text: LowestNewPrice")
+        .col-xs-2(data-bind="text: LowestUsedPrice")
+        .col-xs-2(data-bind="text: LowestRefurbishedPrice")
+        .col-xs-2(data-bind="text: CurrencyCode")
+        .col-xs-2
+          a(data-bind="attr: { href: DetailPageURL}", target="_blank")
+            img(data-bind="attr: { src: SmallImageURL}", width=50, height=50)
+
     

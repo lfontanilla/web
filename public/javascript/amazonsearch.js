@@ -1,7 +1,7 @@
 $(function() {
   var item = function(data) {
     var self = this;
-    self.ASIN = ko.observable(data.UniqueIdentifier);
+    self.ASIN = ko.observable(data.ASIN);
     self.LowestNewPrice = ko.observable(data.LowestNewPrice);
     self.LowestUsedPrice = ko.observable(data.LowestUsedPrice);
     self.LowestRefurbishedPrice = ko.observable(data.LowestRefurbishedPrice);
@@ -24,7 +24,7 @@ $(function() {
       var LowestNewPrice = value.OfferSummary.LowestNewPrice;
       var LowestUsedPrice = value.OfferSummary.LowestUsedPrice;
       var LowestRefurbishedPrice = value.OfferSummary.LowestRefurbishedPrice;
-      var element = new item({"ASIN": value.ASIN, "LowestNewPrice": LowestNewPrice ? (LowestNewPrice.Amount / 100) : -1, "LowestUsedPrice": LowestUsedPrice ? (LowestUsedPrice.Amount / 100) : -1, "LowestRefurbishedPrice": LowestRefurbishedPrice ? (LowestRefurbishedPrice.Amount / 100) : -1, "CurrencyCode": LowestNewPrice ? LowestNewPrice.CurrencyCode : LowestUsedPrice ? LowestUsedPrice.CurrencyCode : LowestRefurbishedPrice ? LowestRefurbishedPrice.CurrencyCode : "NA", "DetailPageURL": value.DetailPageURL, "SmallImageURL": value.SmallImage.URL});      
+      var element = new item({"ASIN": value.ASIN, "LowestNewPrice": LowestNewPrice ? (LowestNewPrice.Amount / 100) : 'NA', "LowestUsedPrice": LowestUsedPrice ? (LowestUsedPrice.Amount / 100) : 'NA', "LowestRefurbishedPrice": LowestRefurbishedPrice ? (LowestRefurbishedPrice.Amount / 100) : 'NA', "CurrencyCode": LowestNewPrice ? LowestNewPrice.CurrencyCode : LowestUsedPrice ? LowestUsedPrice.CurrencyCode : LowestRefurbishedPrice ? LowestRefurbishedPrice.CurrencyCode : 'NA', "DetailPageURL": value.DetailPageURL, "SmallImageURL": value.SmallImage.URL});      
       searchResultsMapped.push(element);
     });
     
