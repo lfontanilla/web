@@ -14,7 +14,11 @@ $(function() {
     var self = this;
     console.log("searchresults");
     var stuff = searchresults.replace(/&quot;/g,'"');
-    console.log(stuff);
+
+    stuff = stuff.substring(1);
+    stuff = stuff.substring(0, stuff.length - 1);
+    stuff = JSON.parse(stuff);
+    console.log(stuff.Items);
     
     self.AmazonSearchResults = ko.observableArray([]);
   };
