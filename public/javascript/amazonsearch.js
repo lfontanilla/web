@@ -12,7 +12,9 @@ $(function() {
 
   var viewModel = function() {
     var self = this;
-
+    
+    self.searchterms = ko.observable(searchterms);
+    
     searchresults = searchresults.replace(/&quot;/g, '"');
     searchresults = searchresults.substring(1);
     searchresults = searchresults.substring(0, searchresults.length - 1);

@@ -123,6 +123,7 @@ header {
 .container {
   width: 800px;
   overflow: hidden;
+  margin-top: 5px !important;
 }
 .main-content {
   float: left;
@@ -171,7 +172,4 @@ footer {
   border-top: 1px dotted #ccc;
   padding-top: 5px;
   font-size: 13px;
-}
-search-results {
-  text-align: center;
 }

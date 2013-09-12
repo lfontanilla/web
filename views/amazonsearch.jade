@@ -2,8 +2,12 @@ extend layout
 block content
   script
     var searchresults="#{JSON.stringify(data)}";
+    var searchterms="#{searchterms}";
+    
   script(type="text/javascript", src="/javascript/amazonsearch.js")
   .container
+    .row-fluid
+      input.col-xs-12.form-control(type='text', placeholder='search in amazon', autofocus="" data-bind="value: searchterms, valueUpdate:'afterkeydown'")
     p
       h4 Amazon search results
     .row
