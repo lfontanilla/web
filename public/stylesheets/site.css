@@ -173,3 +173,6 @@ footer {
   padding-top: 5px;
   font-size: 13px;
 }
+.pagesinbetween {
+  padding: 5px !important;
+}
