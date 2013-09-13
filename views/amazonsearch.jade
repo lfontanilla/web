@@ -2,18 +2,28 @@ extend layout
 block content
   script
     var searchresults = "#{JSON.stringify(data)}";
-    var searchterms = "#{searchterms}";    
+    var searchterms = "#{searchterms}";
+  script(type="text/javascript", src="/javascript/libraries/jquery.bootpag.min.js")
   script(type="text/javascript", src="/javascript/amazonsearch.js")
+  
   .container
     .row-fluid
       .col-xs-10
-        input.form-control(type='text', placeholder='search in amazon', autofocus="" data-bind="value: searchterms, valueUpdate:'afterkeydown', event:{keypress: $root.checkForEnter}")
+        input.form-control(type='text', placeholder='search in amazon', data-bind="value: searchterms, valueUpdate:'afterkeydown', event:{keypress: $root.checkForEnter}")
       .col-xs-2
         button.btn.btn-primary(data-bind="click: AmazonSearch, enable: searchterms") Search
     br
     br
-    .row-fluid
-      h4 Amazon search results
+    .row
+      .col-xs-4
+        h4 Amazon search results
+      .col-xs-2
+        h5 Filter Options
+      .col-xs-2
+        select.form-control(data-bind="options: filterOptions, value: selectedOption, optionsText: 'Name'")
+      .col-xs-4
+        input.form-control(type='text', placeholder='filter the results', autofocus="" data-bind="value: filterValue, valueUpdate : 'afterkeydown'")        
+        
     br
     .row
       .col-xs-2 ASIN
@@ -22,7 +32,7 @@ block content
       .col-xs-2 Lowest Refurbished Price
       .col-xs-2 Currency
       .col-xs-2 Picture
-    div(data-bind="foreach: AmazonSearchResults")
+    div(data-bind="foreach: PagedRows")
       .row
         .col-xs-2(data-bind="text: ASIN")
         .col-xs-2(data-bind="text: LowestNewPrice")
@@ -33,4 +43,7 @@ block content
           a(data-bind="attr: { href: DetailPageURL}", target="_blank")
             img(data-bind="attr: { src: SmallImageURL}", width=50, height=50)
 
-    
+    .row
+      .col-xs-12
+        a(href="#", data-bind="click: PreviousPage, visible: PageIndex() > 0") Previous
+        a(href="#", data-bind="click: NextPage, visible: PageIndex() < MaxPageIndex()") Next    
