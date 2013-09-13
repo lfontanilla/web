@@ -13,7 +13,7 @@ $(function() {
   var viewModel = function() {
     var self = this;
     self.searchterms = ko.observable(searchterms);
-    
+
     searchresults = searchresults.replace(/&quot;/g, '"');
     searchresults = searchresults.substring(1);
     searchresults = searchresults.substring(0, searchresults.length - 1);
@@ -37,18 +37,18 @@ $(function() {
       {value: "LowestUsedPrice", Name: "Lowest Used Price"},
       {value: "LowestRefurbishedPrice", Name: "Lowest Refurbished Price"},
       {value: "CurrencyCode", Name: "Currency Code"}]);
-    
+
     self.selectedOption = ko.observable("");
     self.filterValue = ko.observable("");
 
     self.SizeOfAll = ko.observable(0);
     self.PageSize = ko.observable(4);
     self.PageIndex = ko.observable(0);
-    
+
     self.filterValue.subscribe(function(oldValue) {
-      self.PageIndex(0);      
+      self.PageIndex(0);
     }, null, "beforeChange");
-    
+
     self.PreviousPage = function() {
       self.PageIndex(self.PageIndex() - 1);
     };
@@ -90,7 +90,23 @@ $(function() {
     self.MaxPageIndex = ko.dependentObservable(function() {
       return Math.ceil(self.SizeOfAll() / self.PageSize()) - 1;
     });
-    
+
+    self.MaxPagesArray = ko.observableArray([]);
+
+    self.MaxPageIndex = ko.dependentObservable(function() {
+      var maxpageindex = Math.ceil(self.SizeOfAll() / self.PageSize()) - 1;
+      self.MaxPagesArray([]);
+      var arr = [];
+      for (var i = 1; i <= maxpageindex; i++)
+        arr.push({"name": i});
+      self.MaxPagesArray(arr);
+      return maxpageindex;
+    });
+
+    self.goto = function(item) {
+      console.log(item);
+    }
+
     self.checkForEnter = function(data, event) {
       try {
         if (event.which == 13) {
@@ -112,7 +128,7 @@ $(function() {
       window.location = '/amazonsearch/' + self.searchterms();
     }
   };
-  
+
   var vm = new viewModel();
   ko.applyBindings(vm);
 });
