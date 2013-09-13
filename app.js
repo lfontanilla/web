@@ -1,3 +1,6 @@
+/*
+ * Module dependencies
+ */
 var express = require('express')
         , stylus = require('stylus')
         , nib = require('nib');
@@ -28,9 +31,8 @@ app.configure(function() {
 });
 
 app.listen(config.port, config.host, function() {
-  console.log("Express server listening on port %d in %s mode", config.port, app.settings.env);
+  console.log("Express server listening on port %d in %s mode, THIS IS THE WEB", config.port, app.settings.env);
 });
-
 
 /*
  * Exports the express app for other modules to use
