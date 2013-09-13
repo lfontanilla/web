@@ -2,8 +2,7 @@ extend layout
 block content
   script
     var searchresults = "#{JSON.stringify(data)}";
-    var searchterms = "#{searchterms}";
-  script(type="text/javascript", src="/javascript/libraries/jquery.bootpag.min.js")
+    var searchterms = "#{searchterms}";  
   script(type="text/javascript", src="/javascript/amazonsearch.js")
   
   .container
