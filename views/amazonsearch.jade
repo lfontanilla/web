@@ -25,6 +25,22 @@ block content
         
     br
     .row
+      .col-xs-12
+        div(data-bind="foreach: PagedRows")
+          .product
+            .details
+              |LNP:
+              span(data-bind="text: LowestNewPrice")            
+            .details
+              |LUP:
+              span(data-bind="text: LowestUsedPrice")
+            .details
+              |LUP:
+              span(data-bind="text: LowestRefurbishedPrice")
+            .pict
+              img(data-bind="attr: { src: SmallImageURL}", width=100, height=100)
+    br
+    .row
       .col-xs-2 ASIN
       .col-xs-2 Lowest New Price
       .col-xs-2 Lowest Used Price
