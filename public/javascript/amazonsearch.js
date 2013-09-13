@@ -42,7 +42,7 @@ $(function() {
     self.filterValue = ko.observable("");
 
     self.SizeOfAll = ko.observable(0);
-    self.PageSize = ko.observable(4);
+    self.PageSize = ko.observable(3);
     self.PageIndex = ko.observable(0);
 
     self.filterValue.subscribe(function(oldValue) {
@@ -97,14 +97,22 @@ $(function() {
       var maxpageindex = Math.ceil(self.SizeOfAll() / self.PageSize()) - 1;
       self.MaxPagesArray([]);
       var arr = [];
-      for (var i = 1; i <= maxpageindex; i++)
-        arr.push({"name": i});
+      for (var i = 0; i <= maxpageindex; i++)
+        arr.push({"name": i + 1, "pageToGo": i});
       self.MaxPagesArray(arr);
       return maxpageindex;
     });
 
     self.goto = function(item) {
-      console.log(item);
+      var pagetogo = item.pageToGo - self.PageIndex();
+      if(!pagetogo)
+        return;
+      if (pagetogo > 0)
+        for (var i = 0; i < pagetogo; i++)
+          self.PageIndex(self.PageIndex() + 1);
+      else
+        for (var i = pagetogo; i >= pagetogo; i--)
+          self.PageIndex(self.PageIndex() - 1);
     }
 
     self.checkForEnter = function(data, event) {
