@@ -1,4 +1,5 @@
 $(function() {
+  
   var item = function(data) {
     var self = this;
     self.ASIN = ko.observable(data.ASIN);
