@@ -6,6 +6,8 @@ var express = require('express')
         , nib = require('nib');
 var common = require('./config/config');
 var config = common.config();
+var port = process.env.PORT || config.port;
+
 var app = module.exports = express();
 
 function compile(str, path) {
@@ -30,8 +32,8 @@ app.configure(function() {
   app.use(express.static(__dirname + '/public'));
 });
 
-app.listen(config.port, config.host, function() {
-  console.log("Express server listening on port %d in %s mode, THIS IS THE WEB", config.port, app.settings.env);
+app.listen(port, function() {
+  console.log("Express server listening on port %d in %s mode, THIS IS THE WEB", port, app.settings.env);
 });
 
 /*
